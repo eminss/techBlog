@@ -1,0 +1,26 @@
+{{#if loggedIn}}
+<div>
+    <button><a href="/profile">+ submit new blog post</a></button>
+</div>
+{{/if}}
+<div>
+    <h1>recent posts:</h1>
+    <ul>
+        {{#each blogs}}
+
+        <li id={{id}}>
+
+            <h3>{{name}}</h3>
+            <h6>{{body}}</h6>
+
+        </li>
+
+        {{/each}}
+    </ul>
+</div>
+
+<div class="description">
+    <p>
+        Welcome to your Tech Blog. Signup/login to get started.
+    </p>
+</div>
