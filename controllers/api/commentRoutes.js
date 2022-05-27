@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
 //add a new comment
 router.post("/", (req, res) => {
   if (!req.session.user) {
-    return res.status(401).json({ msg: "You need to login to post a Blog!" })
+    return res.status(401).json({ msg: "You need to login to post a Comment!" })
   }
   Comment.create({
     body: req.body.body,

@@ -1,6 +1,6 @@
 // import modules and packages
 const sequelize = require("../config/connection");
-const { User, Blog } = require("../models");
+const { User, Blog, Comment } = require("../models");
 
 
 // users
@@ -30,6 +30,19 @@ const blogs = [
     }
 ];
 
+const comments = [
+    {
+        body: "Wow that is clean!",
+        blog_id: 1,
+        user_id: 1
+    },
+    {
+        body: "Slimy code!",
+        blog_id: 2,
+        user_id: 1
+    }
+]
+
 // bulk create
 const seed = async () => {
 
@@ -38,6 +51,7 @@ const seed = async () => {
 
         await User.bulkCreate(users, { individualHooks: true });
         await Blog.bulkCreate(blogs);
+        await Comment.bulkCreate(comments);
 
         process.exit(0);
     } catch(err){

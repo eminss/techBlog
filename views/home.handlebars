@@ -8,19 +8,37 @@
     <ul>
         {{#each blogs}}
 
-        <li id={{id}}>
-
-            <h3>{{name}}</h3>
-            <h6>{{body}}</h6>
-
+        <li class="p-1" id={{id}}>
+            <div class="card">
+                <div class="card-title">
+                    <h3 class="p-1">{{name}}</h3>
+                </div>
+                <div class="card-content">
+                    <h6 class="p-1">{{body}}</h6>
+                    <p>Comments: </p>
+                    </br>
+                </div>
+                {{#each blogs}}
+                <p>{{body}}</p>
+                {{/each}}
+            </div>
+            {{#if loggedIn}}
+            <input id="newCommentBody" type="text"></input>
+            </br>
+            <button id="addComment" class="btn btn-primary m-1">Add comment</button>
+            {{/if}}
         </li>
 
         {{/each}}
     </ul>
 </div>
 
+{{#if loggedIn}}
 <div class="description">
     <p>
         Welcome to your Tech Blog. Signup/login to get started.
     </p>
 </div>
+{{/if}}
+
+<script src="/js/profile.js"></script>
