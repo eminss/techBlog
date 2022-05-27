@@ -1,14 +1,14 @@
-const { Blog } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 const router = require('express').Router();
 
-//get all blogs
+//get all comments
 router.get("/", (req, res) => {
-  Blog.findAll({
+  Comment.findAll({
     include: { all: true, nested: true }
   })
-    .then(dbBlogs => {
-      res.json(dbBlogs);
+    .then(dbComments => {
+      res.json(dbComments);
     })
     .catch(err => {
       console.log(err);
@@ -16,11 +16,11 @@ router.get("/", (req, res) => {
     });
 });
 
-//get one blog
+//get one comment
 router.get("/:id", (req, res) => {
-  Blog.findByPk(req.params.id, {})
-    .then(dbBlogs => {
-      res.json(dbBlogs);
+  Comment.findByPk(req.params.id, {})
+    .then(dbComments => {
+      res.json(dbComments);
     })
     .catch(err => {
       console.log(err);
@@ -28,18 +28,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//add a new blog
+//add a new comment
 router.post("/", (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ msg: "You need to login to post a Blog!" })
   }
-  Blog.create({
-    name: req.body.name,
+  Comment.create({
     body: req.body.body,
+    blog_id: req.body.blog_id,
     user_id: req.session.user.id
   })
-    .then(newBlog => {
-      res.json(newBlog);
+    .then(newComment => {
+      res.json(newComment);
     })
     .catch(err => {
       console.log(err);
@@ -47,14 +47,14 @@ router.post("/", (req, res) => {
     });
 });
 
-//update a Blog
+//update a comment
 router.put("/:id", (req, res) => {
-  Blog.update(req.body, {
+  Comment.update(req.body, {
     where: {
       id: req.params.id
     }
-  }).then(updatedBlog => {
-    res.json(updatedBlog);
+  }).then(updatedComment => {
+    res.json(updatedComment);
   })
     .catch(err => {
       console.log(err);
@@ -62,15 +62,15 @@ router.put("/:id", (req, res) => {
     });
 });
 
-//delete a blog
+//delete a comment
 router.delete('/:id', (req, res) => {
-  Blog.destroy({
+  Comment.destroy({
     where: {
       id: req.params.id,
       user_id: req.session.user.id
     }
-  }).then(delBlog => {
-    res.json(delBlog)
+  }).then(delComment => {
+    res.json(delComment)
     location.reload();
   }).catch(err => {
     console.log(err);

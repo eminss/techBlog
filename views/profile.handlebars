@@ -1,27 +1,32 @@
-    <h1>Submit new blog</h1>
+<h1>Submit new blog</h1>
 
-    <form>
-  <div class="form-group">
-    <label for="newBlogTitleLabel">Title</label>
-    <input class="form-control" id="newBlogName" placeholder="Your Blog Title">
-  </div>
-  <div class="form-group">
-    <label for="newBlogContentLabel">Blog Contents</label>
-    <textarea class="form-control" id="newBlogBody" rows="3" placeholder="Your Blog Contents"></textarea>
-  </div>
-  <button id="submitNewBlog" class="btn btn-primary">Submit</button>
+<form>
+    <div class="form-group">
+        <label for="newBlogTitleLabel">Title</label>
+        <input class="form-control" id="newBlogName" placeholder="Your Blog Title">
+    </div>
+    <div class="form-group">
+        <label for="newBlogContentLabel">Blog Contents</label>
+        <textarea class="form-control" id="newBlogBody" rows="3" placeholder="Your Blog Contents"></textarea>
+    </div>
+    <button id="submitNewBlog" class="btn btn-primary">Submit</button>
 </form>
-    
-    <h1>your posts:</h1>
-    <ul>
-        {{#each blogs}}
 
-        <li id={{id}}>
+<h1>your posts:</h1>
+<ul>
+    {{#each blogs}}
 
-            <h3>{{name}}</h3>
-            <h6>{{body}}</h6>
+    <li id={{id}}>
+        <div class="card">
+            <div class="card-title">
+                <h3 class="p-1">{{name}}</h3>
+            </div>
+            <h6 class="p-1">{{body}}</h6>
+        </div>
+        <button id="addComment" class="btn btn-primary m-3">Add comment</button>
+    </li>
 
-        </li>
+    {{/each}}
+</ul>
 
-        {{/each}}
-    </ul>
+<script src="/js/profile.js"></script>
